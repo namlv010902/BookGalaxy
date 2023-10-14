@@ -1,0 +1,127 @@
+.checkout-main {
+  padding: 30px 60px;
+  display: flex;
+}
+
+.checkout {
+  width: 50%;
+}
+.title-checkout{
+  padding: 15px;
+  background-color: #e8f0fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 85px;
+  margin-bottom: 20px;
+}
+
+.form-group>input,
+.form-group>button,
+.form-group>textarea {
+  margin-bottom: 15px;
+  width: 500px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+.form-group input:focus,
+textarea:focus {
+  border: 2px solid #00aaf0;
+}
+
+.form-group {
+  margin-right: 40px;
+}
+
+.form-group>button {
+  background-color: #1786fb; 
+  border: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #fff;
+  padding: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.form-group>button:hover {
+  opacity: 0.8;
+}
+#pay{
+ margin: 5px 0;
+  padding: 10px 15px;
+  background-color: #FFF;
+  border: 2px solid rgba(115,115,115,0.1);
+  border-radius: 5px;
+}
+.cart { 
+  height: fit-content;
+  border-radius: 5px;
+  width: 50%;
+  background-color: #f8f8f8;
+  background-image: url(https://premiumperfume.in/wp-content/themes/basel/images/checkout-border.jpg);
+  background-position: left top;
+  background-repeat: no-repeat;
+  padding: 40px 30px;
+  margin-top: 8px;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #36bb7d;
+  padding: 15px 0;
+}
+
+.c_productInCart {
+  display: flex;
+  align-items: center;
+
+}
+
+.cart_product_image {
+  margin-right: 15px;
+
+}
+
+#cartTotalPrice {
+  text-align: center;
+  background-color: #4fa861;
+  color: #fff;
+  padding: 7px;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.cart_product_image img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.cart_product_image {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  position: relative;
+  width: 65px;
+  height: 65px;
+}
+
+.cart_product_image p {
+  position: absolute;
+  top: 0;
+  margin-top: -10px;
+  right: 0;
+  background-color: #2a9dcc;
+  color: #fff;
+  font-size: 13px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  text-align: center;
+}

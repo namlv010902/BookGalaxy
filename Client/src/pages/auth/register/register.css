@@ -1,0 +1,42 @@
+.image-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+  }
+  
+  .image {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 5%, transparent 80%);
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.3s, transform 0.5s;
+  }
+  
+  .image-container:hover .wave {
+    opacity: 1;
+    transform: scale(1);
+    animation: wave-anim 1.5s infinite;
+  }
+  
+  @keyframes wave-anim {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  

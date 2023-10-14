@@ -1,0 +1,24 @@
+.order-main{
+    padding: 20px 100px;
+    min-height: 80vh;
+    margin-top: 80px;
+}
+#table-order{
+    width: 100%;
+    margin-top: 30px;
+}
+.order-main>h1{
+   border-bottom: 2px solid #FF8400;
+   margin-bottom: 20px;
+   padding-bottom: 10px;
+
+
+}
+#table-order th{
+    background-color: #015E6B;
+    color:#fff;
+    padding: 10px;
+}
+#table-order td{
+    padding: 10px;
+}

@@ -1,0 +1,9 @@
+.message-main{
+    text-align: center;
+    padding-top: 50px;
+    height: 80vh;
+    margin-top: 80px;
+}
+.message-main>h1{
+    color: #6aa84f;
+}

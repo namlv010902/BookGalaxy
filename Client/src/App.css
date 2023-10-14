@@ -1,0 +1,18 @@
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.container-f{
+  width: 100%;
+  margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+}
+.loanding{
+ text-align: center;
+  width: 100%;
+}
+.loanding img{
+  width: 50px;
+}

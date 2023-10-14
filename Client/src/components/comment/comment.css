@@ -1,0 +1,55 @@
+.item-showComment {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc !important;
+    padding-bottom: 10px;
+ 
+  }
+  .show-comment{
+    max-height: 300px;
+    overflow: scroll;
+    padding: 0 30px;
+  }
+  .show-comment::-webkit-scrollbar{
+    width: 5px;
+    
+  }
+  .show-comment::-webkit-scrollbar-thumb{
+    background-color: #ff7600;
+    border-radius: 10px;
+  }
+  
+  .item-showComment img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+
+  }
+  
+  .comment-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  #inputComment{
+    width:330px
+  }
+  .comment-date {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 5px;
+  }
+  
+  .comment-content {
+    font-size: 14px;
+  }
+  .btn-send{
+    padding: 5px 10px;
+    border: none;
+    background-color: #ff7600;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }

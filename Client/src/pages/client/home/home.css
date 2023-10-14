@@ -1,0 +1,280 @@
+.banner img {
+    width: 100%;
+}
+.product {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+.home-main {
+    padding: 20px 100px;
+}
+.product img {
+    width: 100%;
+    border-radius: 8px;
+    height: 202.48px;
+}
+.image img {
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+}
+#productImage {
+    height: 234px;
+}
+.banner-child {
+    position: relative;
+}
+.banner-child img {
+    width: 100%;
+    height: auto;
+}
+.trendy-text h3 {
+    font-size: 30px;
+   color: #000;
+}
+.trendy-text p{
+    font-size: 16px;
+   
+    text-shadow: 0 1px 0 rgba(0,0,0,1);
+    letter-spacing: 1px;
+ 
+}
+.trendy-image{
+    position: relative;
+}
+
+.trendy_item_block{
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    left: 0;
+}
+#heart {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px 5px;
+    background-color: #F8BF85;
+    border-radius: 50%;
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+}
+.products {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 25px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.products .colum {
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #f1f1f1;
+    transition: all ease-in-out 0.3s;
+}
+
+
+
+.products .colum:hover {
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+}
+.content {
+    padding: 15px;
+}
+
+.title {
+    text-align: center;
+    padding: 30px 0;
+    
+}
+.title h1 {
+    font-size: 25px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    display: inline-block;
+    color: #3a8d9e;
+
+}
+.title em {
+    display: block;
+    margin-top: 10px;
+}
+.content h3 {
+    font-size: smaller;
+    font-weight: 500;
+    color: #f51517;
+    background-color: #ccc;
+    display: inline;
+}
+.content>p>a {
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    word-wrap: break-word;
+    line-height: 1.125rem;
+    height: 2.25rem;
+    color: #000;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+.content strong {
+    /* color: #f39201; */
+    color: #3a8d9e;
+}
+.icon {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+}
+.icon i {
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #fff;
+    margin-left: 5px;
+    color: #000;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+.icon i:hover {
+    background-color: #F8BF85;
+    transform: rotate(360deg);
+    transition: 0.3s ease-in-out;
+    border-radius: 50%;
+    color: #fff;
+}
+.products .image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px 5px 0 0;
+}
+.products .colum:hover img {
+    transform: scale(1.2);
+    transition: all ease-in-out 0.3s;
+}
+.icon {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    opacity: 0;
+    transition: bottom 0.3s ease, opacity 0.3s ease;
+    transform: translateX(-50%);
+}
+.colum:hover .icon {
+    bottom: 40%;
+    opacity: 1;
+}
+.trendy-text {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    z-index: 1;
+    color: #ffb85f;
+    text-align: right;
+}
+.inner-image {
+    display: flex;
+    position: relative;
+    
+}
+.inner-image img{
+    height: 400px;
+}
+.inner-image,
+.inner-text {
+    width: 50%;
+}
+.img-Above {
+    position: relative;
+}
+
+.e-con-inner {
+    display: flex;
+    margin-top: 50px;
+}
+.inner-text {
+    padding-top: 30px;
+    background-image: url(https://clients.oliveconcepts.com/elementor/wp-content/uploads/2023/06/oceanic-perfume-bac3.png);
+    background-repeat: no-repeat;
+}
+.inner-text h3 {
+    color: #6D4848;
+    font-family: "Lora", Sans-serif;
+    font-size: 45px;
+    font-weight: 400;
+    line-height: 58px;
+}
+.inner-text p {
+    margin: 20px 0;
+    color: #7A7A7A;
+}
+.inner-text button {
+    font-family: "Poppins", Sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    background-color: #6D4848;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #6D4848;
+    border-radius: 40px 40px 40px 40px;
+    padding: 15px 30px 15px 30px;
+    color: #fff;
+}
+.img-dioi img {
+ position: absolute;
+ transform: translateX(-50%);
+ z-index: -1;
+
+}
+.btn-shop{
+    font-weight: 500;
+    font-style: normal;
+    color: #ffffff;
+    background-color: #3a8d9e;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+   
+}
+.author{
+    color: #8c8d93;
+    font-weight: 400;
+    font-size: 14px;
+    font-family: 'PT Serif',serif;
+    margin: 7px 0;
+}
+.feature-area{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 40px;
+    margin-top: 50px;
+    margin-bottom: 30px; 
+    background-color: #F2F1EE;
+    padding: 15px 30px;
+    border-radius: 50px;
+  
+   
+}
+.feature-item img{
+    height: 63px;
+}
+.feature-item{
+    display: flex;
+    align-items: center;
+    
+}
+.feature-text h4{
+    
+    font-size: 18px; 
+    color: #6D4848;  /* 4cd964*/
+}
+.feature-text{
+    margin-left: 15px;
+}

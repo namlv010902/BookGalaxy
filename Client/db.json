@@ -1,0 +1,28 @@
+{
+  "cart": [
+    {
+      "id": "FHG498",
+      "name": "Product A",
+      "price": 300000,
+      "quantity": 5,
+      "desc": "description of product",
+      "image": "https://bizweb.dktcdn.net/100/368/970/products/sofa-giuong-sf194-600x600.jpg?v=1577247906437"
+    },
+    {
+      "id": "FHG499",
+      "name": "Product B",
+      "price": 400000,
+      "quantity": 1,
+      "desc": "description of product",
+      "image": "https://bizweb.dktcdn.net/100/368/970/products/sofa-giuong-sf194-600x600.jpg?v=1577247906437"
+    },
+    {
+      "id": "FHG497",
+      "name": "Product C",
+      "price": 500000,
+      "quantity": 1,
+      "desc": "description of product",
+      "image": "https://bizweb.dktcdn.net/100/368/970/products/sofa-giuong-sf194-600x600.jpg?v=1577247906437"
+    }
+  ]
+}

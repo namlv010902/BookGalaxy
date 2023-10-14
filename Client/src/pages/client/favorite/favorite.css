@@ -1,0 +1,28 @@
+.main-favorite{
+    padding: 20px 100px;
+    min-height: 80vh;
+    margin-top: 80px;
+}
+.image-favorite img{
+    width: 200px;
+    border-radius: 5px;
+}
+.item-favorite{
+    display: flex;
+    margin-top: 20px;
+}
+.content-favorite{
+    padding-left: 20px;
+}
+.content-favorite p{
+    margin: 10px 0;
+}
+#fv-desc{
+    width: 800px;
+}
+#removeFavorite:hover{
+  font-size: 20px;
+  color: #f12;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}

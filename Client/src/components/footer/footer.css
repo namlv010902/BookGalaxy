@@ -1,0 +1,61 @@
+
+.footer{
+    color: #fff;
+    background-image: url(https://charmee-store-demo.myshopify.com/cdn/shop/files/bg-footer.jpg?v=1613706642);
+    padding: 60px;
+    margin-top: 40px;
+    height: 400px;
+    background-size: cover;
+}
+footer{
+    display: flex;
+}
+.footer {
+    text-align: center;
+
+}
+.footer-right, .footer-left {
+    width: 50%;
+    height: 250px;
+    padding: 30px 0;
+    
+   
+}
+.footer-right p{
+    margin: 30px 0;
+}
+.footer-right{
+    border-left: 2px solid #fff;
+}
+.footer h3{
+    font-size: 28px;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+.footer-icon i{
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 16px;
+    border-radius: 50%;
+    margin: 0 10px 10px 0;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+.copyright{
+    font-size: 10px;
+    color: #fff;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-top: 32px;
+}
+

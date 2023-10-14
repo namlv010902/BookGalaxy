@@ -1,0 +1,19 @@
+.login-btn img{
+    width:130px;
+    margin-right:10px ;
+    cursor: pointer;
+    
+}
+.login-btn{
+    text-align: center;
+    margin: 20px 0;
+}
+#formLogin>form{
+    margin: 0 auto;
+    width: 500px;
+   
+}
+#formLogin input{
+    height: 35px; 
+    
+}
