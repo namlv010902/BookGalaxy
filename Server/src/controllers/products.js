@@ -6,34 +6,53 @@ import { validateProduct } from "../validation/products";
 
 
 export const getAllProduct = async (req, res) => {
-  const { _page = 1, _order = "asc", _limit = 12, _sort = "createdAt", _q = "" } = req.query;
+  const { _page = 1,
+    _order = "asc",
+    _limit = 9999,
+    _sort = "createdAt",
+    _q = "",
+    _categoryId = "",
+    _minPrice = "",
+    _maxPrice = "",
+
+  } = req.query;
   const options = {
     page: _page,
     limit: _limit,
     sort: {
       [_sort]: _order === "desc" ? -1 : 1,
     },
-    populate: 'categoryId' ,
+    populate: 'categoryId',
   };
-  const searchText = _q ? unidecode(_q) : ''; // Chuyển đổi chuỗi tìm kiếm thành không dấu
+  const searchText = _q ? unidecode(_q) : '';
 
   try {
-    let product;
+    let query = {};
     if (searchText) {
-      product = await Products.paginate(
-        { name: { $regex: searchText, $options: 'i' } },
-        options
-      );
-    } else {
-      product = await Products.paginate({}, options);
-      // product = await Products.find( ).populate("categoryId");
-
-
+      query = { title: { $regex: searchText, $options: 'i' } };
+    }
+    if (_categoryId) {
+      query.categoryId = _categoryId
+    }
+    if (_minPrice) {
+      query.price = { $gte: _minPrice }
+    }
+    if (_maxPrice) {
+      query.price = { $lte: _maxPrice }
+    }
+    if (_minPrice && _maxPrice) {
+      query.price = { $gte: _minPrice, $lte: _maxPrice }
+    }
+    const product = await Products.paginate(query, options);
+    let maxPrice = 0
+    for (let item of product.docs) {
+      maxPrice = Math.max(item.price)
     }
 
+    product["maxPrice"] = maxPrice
     return res.status(201).json({
       message: "Get all product successfully",
-      product
+      product,
     });
   } catch (error) {
     return res.status(400).json({
@@ -94,7 +113,7 @@ export const updateProduct = async (req, res) => {
         productId: product._id,
       },
     });
-    
+
     return res.status(201).json({
       message: "Update product successfully",
       product
@@ -114,7 +133,7 @@ export const getOneProduct = async (req, res) => {
     return res.status(201).json({
       message: "Get product successfully",
       product,
-      
+
     })
   } catch (error) {
     return res.status(400).json({
@@ -126,7 +145,7 @@ export const removeProduct = async (req, res) => {
   try {
     // Tìm và lấy thông tin sản phẩm cần xóa
     const product = await Products.findById(req.params.id);
-    const {  categoryId } = product;
+    const { categoryId } = product;
     // Xóa id của sản phẩm khỏi bảng category
     await Categories.findByIdAndUpdate(categoryId, {
       $pull: {
@@ -152,14 +171,14 @@ export const filterPrice = async (req, res) => {
     sort: {
       [_sort]: _order === "desc" ? -1 : 1,
     },
-    populate: [ { path: 'categoryId' }],
+    populate: [{ path: 'categoryId' }],
 
   };
 
   try {
     return res.status(201).json({
       message: "Get all product successfully",
-      
+
     });
   } catch (error) {
     return res.status(400).json({

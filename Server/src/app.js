@@ -3,9 +3,8 @@ import mongoose from "mongoose";
 import categoryRouter from "./routers/categories"
 import productRouter from "./routers/products"
 import authRouter from "./routers/auth"
-import cartRouter from "./routers/carts"
 import orderRouter from "./routers/orders"
-import commentRouter from "./routers/comments"
+import commentRateRouter from "./routers/commentRate"
 import favoriteRouter from "./routers/favorites"
 import uploadRouter from "./routers/upload"
 import userRouter from "./routers/users"
@@ -17,9 +16,9 @@ app.use(express.json())
 app.use("/api",categoryRouter)
 app.use("/api",productRouter)
 app.use("/api",authRouter)
-app.use("/api",cartRouter)
+
 app.use("/api",orderRouter)
-app.use("/api",commentRouter)
+app.use("/api",commentRateRouter)
 app.use("/api",favoriteRouter)
 app.use("/api",uploadRouter)
 app.use("/api",userRouter)

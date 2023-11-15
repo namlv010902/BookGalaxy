@@ -28,15 +28,23 @@ const productSchema = new mongoose.Schema({
         ref: "Categories"
     },
     publication_date:{
-        type: mongoose.Schema.Types.Date,
+        type: String,
         required: true
     },
     stock:{
         type:Number,
         required: true
+    },
+    sold:{
+        type:Number,
+        default:0
+    },
+    discount:{
+        type:Number,
+        default:0
     }
 
 }, { timestamps: true, versionKey: false });
 productSchema.plugin(mongoosePaginate)
-productSchema.index({ name: 'text' })
+productSchema.index({ title: 'text' })
 export default mongoose.model("Products", productSchema)

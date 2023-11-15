@@ -1,7 +1,8 @@
-import Comment from "../models/comments";
+import Comment from "../models/commentRate";
 export const createComment =async(req, res)=>{
  try {
-    const comment = await Comment.create({userId: req.user._id,productId:req.body.productId, content:req.body.content})
+     req.body["userId"] = req.user._id
+    const comment = await Comment.create(req.body)
     return res.status(200).json({
         message:"Comment created",
         comment
@@ -12,6 +13,20 @@ export const createComment =async(req, res)=>{
       });
  }
 
+}
+export const getCommentRate = async (req, res) => {
+    try {
+        const data = await Comment.findOne({ productId: req.query.productId,orderId:req.query.orderId }).populate("userId").populate("productId")
+      
+        return res.status(200).json({
+            message: "Get commentRate successfully",
+            data
+        })
+    } catch (error) {
+        return res.status(400).json({
+            message: error.message,
+        });
+    }
 }
 export const getCommentProduct =async(req, res)=>{
     try {

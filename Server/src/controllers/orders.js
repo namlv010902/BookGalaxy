@@ -1,119 +1,49 @@
 import Order from "../models/orders";
-import Cart from "../models/carts";
-import Products from "../models/products";
-import { checkout } from "../validation/checkout"
+import Product from "../models/products";
+import { validateCheckout } from "../validation/checkout"
 import User from "../models/users";
 import { transporter } from "../config/mail";
 //Tạo mới đơn hàng
 export const createOrder = async (req, res) => {
   try {
-    const { cartId, address, phone, note, customerName } = req.body;
-    const userId = req.user._id
-    const cart = await Cart.findById(cartId).populate("products.productId");
-    const products = cart.products.map((item) => {
-      const { productId, quantity, price, sizeId } = item;
-      return {
-        productId: productId._id,
-        price,
-        quantity,
-        sizeId
-      }
-
-    });
-    console.log(products);
-    const { error } = checkout.validate({address,phone,customerName}, { abortEarly: false });
+    const { error } = validateCheckout.validate(req.body, { abortEarly: false })
     if (error) {
-      return res.status(402).json({
-        message: error.details.map(item => item.message)
+      return res.status(401).json({
+        message: error.details.map(err => err.message)
       })
     }
-    const order = await Order.create({
-      userId,
-      cartId,
-      address,
-      phone,
-      note,
-      products,
-      totalPrice: cart.totalPrice,
-      customerName
-    });
-    await order.populate("products.productId")
-    await order.populate("products.sizeId")
-    const user = await User.findById(userId);
-    // thêm idOrder vào bảng user
-    await User.findByIdAndUpdate(userId,{
-      $push:{
-        orderId:order._id
+
+    for (let product of req.body.products) {
+      const productIndex = await Product.findById(product.productId)
+      // console.log(productIndex);
+      let quantity = product.quantity
+      if (productIndex.stock == 0) {
+        return res.status(402).json({
+          message: "The product is out of stock",
+          data: [{ productId: product.productId }]
+        })
       }
-    })
-
-    const productInOrder = order.products;
-    var checkTime = new Date(order.createdAt);
-    var outTime = checkTime.toLocaleString();
-    // Gửi mail thông báo đặt hàng thành công
-    const mailOptions = {
-      from: 'namphpmailer@gmail.com',
-      to: user.email,
-      subject: 'Thông báo đặt hàng thành công',
-      html: `
-        <div style="margin-bottom: 10px;">
-        <img src="https://charmee-store-demo.myshopify.com/cdn/shop/files/logo.png?v=1613708277" style="width: 200px; height: auto; margin-right: 10px;" />
-          <p style="margin: 0; font-size: 16px; color: blue; font-weight: 500;">Đơn hàng của bạn đã được khởi tạo:</p>
-    
-          <div style="display: flex; align-items: center;">
-            <div>
-              <p style="font-size: 16px; color: #002140; margin-right: 10px;font-weight:"bold">Mã đơn hàng: ${order._id}</p>
-              <p style="font-size: 16px; color: #002140;">Tên người đặt: ${user.name}</p>
-              <p style="font-size: 16px; color: #002140;">Địa chỉ nhận hàng: ${address}</p>
-              <p style="font-size: 16px; color: #002140;">Số điện thoại: ${order.phone}</p>
-              <p style="font-size: 16px; color: #002140;">Tổng tiền thanh toán: $${order.totalPrice}</p>
-             
-              <div style="margin-top: 10px;">
-             <strong style="border-bottom:1px solid #ccc">Chi tiết sản phẩm : </strong>
-                ${productInOrder.map(product => `
-                  <div style="display: flex; align-items: center;">
-                    <img src="${product.productId.image}" style="width: 90px; height: auto; " />
-                    <div>
-                    <p style="font-size: 16px; font-weight:bold;color: #2a9dcc; "> ${product.productId.name} ( ${product.sizeId.name} )</p>
-                   <div>
-                   <p style="font-size: 16px; color: #002140; "> $${product.price} X ${product.quantity} </p>
-    
-                   </div>
-                    </div>
-                    </div>
-                `).join('')}
-                <p style="font-size: 16px; color: #002140;">Thời gian đặt hàng: ${outTime}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      `,
-    };
-    // Gửi email
-    const result = await transporter.sendMail(mailOptions);
-    console.log('Email gửi thành công:', result);
-    // cập nhật lại giỏ hàng 
-    cart.products = []
-    cart.totalPrice = 0
-    cart.save()
-     // lặp lấy ra từng sp trong đơn hàng ra
-    for (const product of products) {
-      const { productId, quantity, sizeId } = product;
-      // Cập nhật inStock và unitsSold cho kích thước tương ứng
-      await Products.findOneAndUpdate(
-        { _id: productId, 'sizes.sizeId': sizeId },
-        {
-          $inc: {
-            'sizes.$.inStock': -quantity, // Giảm inStock
-            'sizes.$.unitsSold': quantity, // Tăng unitsSold
-          },
+      if (productIndex.stock < quantity) {
+        return res.status(402).json({
+          message: "The remaining product is not enough",
+          data: [{ productId: product.productId }]
+        })
+      }
+      await Product.findByIdAndUpdate(productIndex._id, {
+        $set: {
+          "stock": productIndex.stock - quantity,
+          // "sold": productIndex.sold + quantity
         }
-      );
+      })
     }
-
+    console.log(req.user._id);
+    if(req.user._id){
+      req.body["userId"]=req.user._id
+    }
+    const data = await Order.create(req.body)
     return res.status(201).json({
       message: "Create order successfully",
-      order,
+      data,
     });
   } catch (error) {
     return res.status(400).json({
@@ -156,7 +86,7 @@ export const getAdminOrders = async (req, res) => {
 //Chi tiết order
 export const getOrderDetail = async (req, res) => {
   try {
-    const order = await Order.findById(req.params.id).populate("userId").populate("products.productId").populate('products.sizeId')
+    const order = await Order.findById(req.params.id).populate("userId")
     if (!order) {
       return res.status(401).json({
         message: "Order not found"
@@ -166,7 +96,7 @@ export const getOrderDetail = async (req, res) => {
     let remainingTimeMessage = null
     let formattedTime = Number(remainingTime.toFixed(2))
     if (canCancel) {
-      remainingTimeMessage = "Còn lại: " + formattedTime + "h để hủy đơn hàng này";
+      remainingTimeMessage = true;
 
     } else {
       remainingTimeMessage = false;

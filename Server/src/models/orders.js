@@ -1,26 +1,28 @@
 import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
-  cartId: {
-    type: mongoose.Types.ObjectId,
-    required: true,
-    ref: "Cart"
-  },
+ 
   userId: {
-    type: mongoose.Types.ObjectId,
-    required: true,
-    ref: "User"
+    type: mongoose.Schema.Types.Mixed,
+    default:null
   },
   customerName: {
     type: String,
     required: true
   },
-
   products: [{
     productId: {
       type: mongoose.Types.ObjectId,
       required: true,
       ref: "Products"
+    },
+    productTitle:{
+      type: String,
+      required: true,
+    },
+    productImage:{
+      type: String,
+      required: true,
     },
     quantity: {
       type: Number,
@@ -29,16 +31,9 @@ const orderSchema = new mongoose.Schema({
     price: {
       type: Number,
       required: true,
-    },
-    sizeId:{
-      type: mongoose.Types.ObjectId,
-      required: true,
-      ref: "Size"
     }
   }
-
   ],
-
   DeliveryDate: {
     type: String,
     default: null
@@ -50,7 +45,7 @@ const orderSchema = new mongoose.Schema({
   },
   note: {
     type: String,
-
+    default: null
   },
   address: {
     type: String,
@@ -60,14 +55,24 @@ const orderSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  totalPrice: {
+  email: {
+    type: String,
+    required: true,
+  },
+  totalPayment: {
     type: Number,
+    required:true
   },
   status: {
     type: String,
     default: "Pending"
+  },
+  orderDate:{
+    type:String,
+    default: function(){
+      return new Date().toLocaleDateString()
+    }
   }
-
 
 }, { timestamps: true, versionKey: false });
 

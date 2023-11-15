@@ -1,5 +1,5 @@
 import express  from "express";
-import { createComment, getCommentProduct, getComments, removeComment } from "../controllers/comments";
+import { createComment, getCommentProduct, getComments, removeComment } from "../controllers/commentRate";
 import authenticate from "../middlewares/authenticate";
 import {checkPermissionAndAuth} from "../middlewares/authorization"
 const router = express.Router()
