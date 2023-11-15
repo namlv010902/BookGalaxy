@@ -1,5 +1,5 @@
 
-import { Button, Form, Input, message } from 'antd';
+import { Button, Form, Input, message,Rate } from 'antd';
 import './comment.css'
 import { createComment, getCommentProduct } from '../../service/comment.service';
 import { useEffect } from "react"
@@ -56,6 +56,8 @@ const ShowComment = (props: IProps) => {
               <div className="comment-info">
                 <h3 className="comment-name">{item?.userId?.name}</h3>
                 <p className="comment-date">{outTime}</p>
+                <Rate defaultValue={item.star} disabled></Rate>
+               
                 <p className="comment-content">{item?.content}</p>
               </div>
             </div>
@@ -65,32 +67,7 @@ const ShowComment = (props: IProps) => {
       </div>
 
 
-      <div className="add-comment">
-        <Form
-          name="basic"
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
-          style={{ maxWidth: 600, display: "flex" }}
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-
-          autoComplete="off"
-        >
-          <Form.Item
-            label="Content"
-            name="content"
-
-            rules={[{ required: true, message: 'Please input your content!' }]}
-          >
-            <Input id="inputComment" />
-          </Form.Item>
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="primary" htmlType="submit">
-              <i className="fa fa-paper-plane-o" aria-hidden="true"></i>
-            </Button>
-          </Form.Item>
-        </Form>
-      </div>
+  
 
     </div>
   )

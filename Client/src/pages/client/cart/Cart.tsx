@@ -4,49 +4,49 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from 'antd';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { scrollToTop } from '../../../service/config.service';
 import { getCart, updateCart } from '../../../service/cart.service';
-import { ICartProduct } from '../../../types/cart';
+import { ICart } from '../../../types/cart';
 import { useCart } from '../../../hooks/useCart';
+import { getProduct } from '../../../service/products.service';
+import { IProduct } from '../../../types/products';
 
 
 const Cart = () => {
-  const navigate = useNavigate();
-  const accessToken = JSON.parse(localStorage.getItem('accessToken')!);
-  useEffect(() => {
-    if (!accessToken) {
-      navigate("/auth/login");
+  const [cart, setCart] = useState<ICart[]>(JSON.parse(localStorage.getItem('cart') || '[]'));
+  const [product, setProduct] = useState<IProduct>()
+  const updateQuantity = async (quantity: number, id: string) => {
+    getProduct(id).then(({data})=>{
+      setProduct(data.product);
+    })
+   if(product){
+    if(quantity > product?.stock){
+      alert("Product quantity is out of range")
+      return
     }
-  }, []);
-  const { cart, handleRemove, dispatch } = useCart()
-  const updateQuantity = async (quantity: number, id: string, sizeId: string) => {
-    if (quantity == null) {
-      quantity = 1
-    }
-    const checkCount = cart.products.find((item: ICartProduct) => item._id === id);
-    const check = checkCount.productId.sizes.find((item: any) => item.sizeId === sizeId);
-    const { inStock } = check;
-    if (quantity > inStock) {
-      quantity = inStock;
-      toast.error("Quantity limited in Stock.");
-    }
-    try {
-      await updateCart(id, { quantity });
-      const { data: updatedCartData } = await getCart();
-      dispatch({
-        type: "GET_CART",
-        payload: updatedCartData.cart
-      });
-    } catch (error) {
-      alert('Error updating cart:' + error);
-    }
+   }
+    const updateCart = cart.map((item:ICart)=>{
+      if(item.productId === id){
+        if(quantity % 1 == 0){
+          item.quantity = quantity
+        } 
+      }
+      return item
+    })
+    localStorage.setItem('cart', JSON.stringify(updateCart))
+    setCart(updateCart)
   };
+  const removeProduct=(productId:string)=>{
+    const updateCart = cart.filter((item:ICart)=> item.productId != productId)
+    localStorage.setItem('cart', JSON.stringify(updateCart))
+    setCart(updateCart)
+  }
   return (
     <div>
       <ToastContainer></ToastContainer>
       <div className="cart-main">
-        {cart?.products?.length > 0 ? (
+        {cart?.length > 0 ? (
           <div id="show-cart">
             <h3>Shopping Bag</h3>
             <table id='cart'>
@@ -61,26 +61,26 @@ const Cart = () => {
                 </tr>
               </thead>
               <tbody>
-                {cart.products?.map((item: ICartProduct,index:number) => {
-                  let sum = item.price * item.quantity;
-                  console.log(item);
+                {cart?.map((item: ICart,index:number) => {
+                  let sum = item?.price * item?.quantity;
+                  // console.log(item);
                   
                   return (
                     <tr key={index}>
-                      <td>{item.productId.name}<p style={{ color: "#015E6B", fontWeight: "bold" }}>( {item.sizeId?.name} )</p></td>
-                      <td><Link to={`/product/${item.productId._id}`} ><img src={item.productId.image} alt="" /></Link></td>
-                      <td style={{ color: "#fca120" }}> ${item.price}</td>
+                      <td>{item?.productTitle}<p style={{ color: "#015E6B", fontWeight: "bold" }}></p></td>
+                      <td><Link to={`/product/${item?.productId}`} ><img src={item?.productImage} alt="" height={70} /></Link></td>
+                      <td style={{ color: "#fca120" }}> ${item?.price}</td>
                       <td>
                         <InputNumber
+                         
                           min={1}
-                          // max={item.sizeId.inStock} 
-                          value={item.quantity}
-                          onChange={(quantity) => typeof quantity === "number" && updateQuantity(quantity, item._id, item.sizeId._id)}
+                          value={item?.quantity}
+                          onChange={(quantity) => typeof quantity === "number" && updateQuantity(quantity, item?.productId,)}
                         />
                       </td>
                       <td>${sum}</td>
                       <td>
-                        <button className='btn-removeCart' onClick={() => handleRemove(item._id)}>
+                        <button className='btn-removeCart' onClick={()=>removeProduct(item.productId)} >
                           <i className="fa-regular fa-circle-xmark"></i>
                         </button>
                       </td>
@@ -90,7 +90,7 @@ const Cart = () => {
               </tbody>
             </table>
             <div id="checkout">
-              <h3>TotalPrice: ${cart.totalPrice}</h3>
+              <h3>TotalPrice:</h3>
               <Link to="/checkout">
                 <button onClick={()=>scrollToTop()}>Checkout</button>
               </Link>
@@ -103,8 +103,7 @@ const Cart = () => {
               <Button onClick={() => scrollToTop()}>GO TO WHICH SHOP?</Button>
             </Link>
           </div>
-        )}
-      </div>
+        )}      </div>
     </div>
   );
 };

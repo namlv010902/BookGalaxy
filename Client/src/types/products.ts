@@ -12,10 +12,12 @@ export interface IProduct{
     title:string;
     image:string;
     description:string;
-    publication_date:Date;
+    publication_date:string;
     categoryId:ICate;
+    discount:number,
     stock:number;
     price:number;
     author:string;
+    sold:string
    
 }

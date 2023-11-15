@@ -15,15 +15,9 @@ export const useProducts=()=>{
       })
     }, [])
     const handlePageChange = (page: any) => {
-      paginateProduct(page).then(({ data }) => {
-        console.log(data);
-        setToTalPage((data.product.totalPages) * 10)
-        dispatch({
-          type: 'GET_PRODUCTS',
-          payload: data.product.docs
-        })
-      })
-      console.log("Page hiện tại: " + page, "/Tổng page: " + totalPage);
+       
+        
+     
     };
     const onHandleRemove = (id: string) => {
       if (window.confirm('Are you sure?')) {

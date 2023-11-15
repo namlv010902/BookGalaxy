@@ -1,6 +1,6 @@
 .product-main {
     padding: 20px 100px;
-    margin-top: 80px;
+   
 }
 
 #filterPrice {
@@ -33,7 +33,7 @@ aside button {
 
 .banner-product {
     height: 300px;
-    background-image: url(https://charmee-store-demo.myshopify.com/cdn/shop/files/banner-collection.jpg?v=1613705901);
+    background-image: url(https://bookcart.themability.com/image/catalog/megamenu/1.png);
     background-repeat: no-repeat;
     border-radius: 15px;
     display: flex;

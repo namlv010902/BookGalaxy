@@ -6,7 +6,7 @@ export const ADgetOrders = () => {
     return instance.get('order-admin/')
 }
 export const createOrder = (data: any) => {
-    return instance.post('order/', data, { headers })
+    return instance.post('orders/', data, { headers })
 }
 export const getUserOrder = () => {
     return instance.get('orderUser/', { headers })

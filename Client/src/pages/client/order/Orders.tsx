@@ -63,7 +63,7 @@ const InvoiceList = () => {
                     <td>{invoice._id}</td>
                     <td>{timeExist}</td>
                     <td>{invoice.status}</td>
-                    <td>${invoice.totalPrice}</td>
+                    <td>${invoice.totalPayment}</td>
                     <td>{(invoice.pay == true) ? "Paid" : "Unpaid"}</td>
                     <td><Link to={`/order/${invoice._id}`}><Tag color="blue"> <i style={{ fontSize: "18px", margin: "5px" }} className="fa-solid fa-eye"></i></Tag></Link></td>
                   </tr>

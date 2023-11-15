@@ -14,17 +14,7 @@ type IProps = {
 export const useCart =()=>{
   const { cart, dispatch } = useStoreCart()
  
- const accessToken = JSON.parse(localStorage.getItem("accessToken")!)
-  useEffect(() => {
-  if(accessToken){
-    getCart().then(({data})=>{
-        dispatch({
-           type: "GET_CART",
-           payload: data.cart
-         })
-     }) 
-  } 
-  }, [accessToken])
+
  
   // xóa 1 sp (.) giỏ hàng
   const handleRemove = (id: string) => {

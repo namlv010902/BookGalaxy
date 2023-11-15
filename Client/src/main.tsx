@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import { CartProvider, CategoryProvider, CommentProvider, FavoriteProvider, OrderProvider, ProductProvider, UserProvider } from './store/provider.tsx'
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById('app') as HTMLElement).render(
  
       <CategoryProvider>
         <FavoriteProvider>

@@ -23,7 +23,7 @@ export const getProductBest = () => {
     return instance.get('products/?_sort=createdAt&_order=asc&_limit=10')
 }
 export const sortProduct = (value: any) => {
-    return instance.get('products/?_sort=name&_order=' + value)
+    return instance.get('products/?_sort=price&_order=' + value)
 }
 export const searchProduct = (value: any) => {
     return instance.get('products/?_q=' + value)
@@ -32,14 +32,11 @@ export const paginateProduct = (value: any) => {
     return instance.get('products/?_limit=12&_page=' + value)
 }
 export const filterPrice = (min: number, max: number) => {
-    const value = {
-        minPrice: min,
-        maxPrice: max
-    }
-    return instance.post('productFilterPrice/', value)
+   
+    return instance.get(`products/?_minPrice=${min}&_maxPrice=${max}`)
 }
 export const getCategoryProducts = (idCate: string) => {
-    return instance.get('categoryProducts/' + idCate)
+    return instance.get('products/?_categoryId=' + idCate)
 }
 
 export const paginateCategoryProducts = (idCate: string, page: number) => {

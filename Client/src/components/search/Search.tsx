@@ -23,8 +23,8 @@ const Search = () => {
                                 <img src={item.image} alt="" />
                             </div>
                             <div className="product-in-search">
-                                <p id='search-name'>{item.name}</p>
-                                <strong id='price'>${item.sizes[0].price} </strong>
+                                <p id='search-name'>{item.title}</p>
+                                <strong id='price'>${item.price} </strong>
                             </div>
                         </Link>
                     </div>

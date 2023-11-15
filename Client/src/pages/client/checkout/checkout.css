@@ -8,11 +8,11 @@
 }
 .title-checkout{
   padding: 15px;
-  background-color: #e8f0fe;
+  /* background-color: #e8f0fe; */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 85px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 

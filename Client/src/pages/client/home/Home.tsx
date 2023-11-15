@@ -1,6 +1,8 @@
 import Carousel from '../../../components/banner/banner'
 import './home.css'
-
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+ import 'slick-carousel/slick/slick-theme.css';
 import { useEffect, useState } from "react"
 import { getProductBest, getProductNew } from '../../../service/products.service'
 import { IProduct } from '../../../types/products'
@@ -22,6 +24,8 @@ const Home = () => {
     getProductBest().then(({ data }) => setProduct(data.product.docs)
     )
   }, [])
+
+
   return (
     <div className='home'>
       <Carousel ></Carousel>
@@ -57,6 +61,7 @@ const Home = () => {
           </div>
 
         </div>
+        <hr />
         <div className="e-con-inner">
           <div className="inner-text">
             <h3>Experience Scent Like Never Before</h3>
@@ -64,13 +69,8 @@ const Home = () => {
             <button>BUY NOW</button>
           </div>
           <div className="inner-image">
-            <div className="img-Above">
-            <img src="https://wordpress.templatetrip.com/WCMTM01/WCMTM012_booklet/wp-content/uploads/revslider/slider-1/slider-02.png" alt="" />
-            </div>
-            <div className="img-dioi">
-            <img src="https://template83028.motopreview.com/mt-demo/83000/83028/mt-content/uploads/2019/06/mt-1842_products_img11.jpg" alt="" />
-            </div>
-          </div>
+            <img src="https://opencart.templatetrip.com/OPCTM01/OPCTM008_book/image/catalog/demo/banners/offer-img-01.png" alt="" />
+     </div>
         </div>
         <div className="title" >
           <div className="title-child"><h1>BEST SELLER</h1> <br />
@@ -82,18 +82,23 @@ const Home = () => {
           ))}
 
         </div> : <Loading></Loading>}
-        <div className="banner-child">
-          <div className="trendy-text">
-            <p>Get up to 20% off</p>
-            <h3>SO MANY BOOKS SO LITTLE TIME</h3>
-            <button className='btn-shop'>SHOW NOW</button>
-          </div>
-          <div className="trendy-image">
-            <img className='trendy_item' src="https://template65582.motopreview.com/mt-demo/65500/65582/mt-content/uploads/2018/01/mt-1321_home_slider04.jpg" alt="" />
-            <img className='trendy_item_block' src="https://wordpress.templatetrip.com/WCMTM01/WCMTM012_booklet/wp-content/uploads/2023/03/about2.png" alt="" />
-
-          </div>
+      <div className="ttcmsbanner">    
+        <div className="banner-item">
+         <div className="banner_desc_left">
+         <h4>Book Of The Month</h4>
+          <h2>History Book</h2>
+          <button className='btn-shop'>GO, SHOP</button>
+         </div>
         </div>
+        <div className="banner-item_right">
+         <div className="banner_desc_right">
+         <h4>Book Of The Month</h4>
+          <h2>History Book</h2>
+          <button className='btn-shop'>GO, SHOP</button>
+         </div>
+        </div>
+      
+      </div>
 
         <div className="title" >
           <div className="title-child"><h1>TRENDING</h1> <br />

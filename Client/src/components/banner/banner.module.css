@@ -1,0 +1,55 @@
+.banner img{
+    width: 100%;
+}
+.bannerText{
+    position: absolute;
+    left: 50%;
+    color: #fff;
+    width: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-right: 30px;
+    
+}
+.bannerText h1{
+    font-weight: 700;
+    font-style: normal;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: 1px;
+}
+.bannerText p{
+    font-weight: 400;
+    font-style: normal;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    margin-top: 20px;
+}
+.imageContainer{
+    position: relative;
+}
+.bannerText{
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    color: #fff;
+
+}
+@keyframes moveInRight{
+    0%{
+        transform: translateX(100px);
+    }
+    80%{
+        transform: translate(20px);
+    }
+    100%{
+        transform: translate(0);
+    }
+}
+.bannerText h1{
+    font-size: 60px;
+    margin-bottom: 20px;
+    font-family: math; 
+}

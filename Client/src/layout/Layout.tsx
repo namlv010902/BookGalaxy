@@ -9,8 +9,11 @@ const Layout = () => {
 
   useEffect(() => {
     let prevScrollPos = window.pageYOffset;
+    
+    
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
+      console.log(currentScrollPos);
       setIsScrollingUp(prevScrollPos < currentScrollPos);
       prevScrollPos = currentScrollPos;
     };
@@ -22,7 +25,7 @@ const Layout = () => {
   }, []);
 
   return (
-    <div className='container-f'>
+    <div className='container'>
       <Header></Header>
       <Outlet></Outlet>
       {isScrollingUp && (

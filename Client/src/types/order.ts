@@ -10,10 +10,10 @@ export interface IOrder{
     pay:boolean,
     DeliveryDate:string,
     status:string,
-    totalPrice:number,
+    totalPayment:number,
     phone:string,
     note:string,
     address:string,
     createdAt:any  //date
-
+ 
 }

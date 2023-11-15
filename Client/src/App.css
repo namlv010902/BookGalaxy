@@ -4,11 +4,13 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-.container-f{
+.container{
   width: 100%;
   margin: 0 auto;
   font-family: 'Poppins', sans-serif;
+
 }
+
 .loanding{
  text-align: center;
   width: 100%;
