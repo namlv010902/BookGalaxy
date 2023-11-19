@@ -17,19 +17,19 @@ import ForgotPassword from "../pages/client/forgotPassword/ForgotPassword";
 import ChangePassword from "../pages/client/changePassword/ChangePassword";
 import Checkout from "../pages/client/checkout/Checkout";
 import NotFoundPage from "../pages/not-found-page/NotFoundPage";
-// import LayoutAD from "../layout/LayoutAD";
-// import ListProducts from "../pages/admin/products/ListProducts";
-// import CreateProduct from "../pages/admin/products/CreateProduct";
-// import UpdateProduct from "../pages/admin/products/UpdateProduct";
- import Layout from "../layout/Layout";
-// import ListCategories from "../pages/admin/categories/ListCategories";
-// import CreateCategory from "../pages/admin/categories/CreateCategory";
-// import ListOrders from "../pages/admin/orders/ListOrders";
-// import UpdateOrder from "../pages/admin/orders/UpdateOrder";
-// import ListComments from "../pages/admin/comment/ListComments";
-// import ListUsers from "../pages/admin/users/ListUsers";
-// import UpdateCategory from "../pages/admin/categories/UpdateCategory";
-// import DashBroad from "../pages/admin/dashbroad/DashBroad";
+import LayoutAD from "../layout/LayoutAD";
+import ListProducts from "../pages/admin/products/ListProducts";
+import CreateProduct from "../pages/admin/products/CreateProduct";
+import UpdateProduct from "../pages/admin/products/UpdateProduct";
+import Layout from "../layout/Layout";
+import ListCategories from "../pages/admin/categories/ListCategories";
+import CreateCategory from "../pages/admin/categories/CreateCategory";
+import ListOrders from "../pages/admin/orders/ListOrders";
+import UpdateOrder from "../pages/admin/orders/UpdateOrder";
+import ListComments from "../pages/admin/comment/ListComments";
+import ListUsers from "../pages/admin/users/ListUsers";
+import UpdateCategory from "../pages/admin/categories/UpdateCategory";
+import DashBroad from "../pages/admin/dashbroad/DashBroad";
 
 export const router = createBrowserRouter([
   {
@@ -56,21 +56,22 @@ export const router = createBrowserRouter([
       { path: '*', element: <NotFoundPage /> },
     ],
   },
-  // {
-  //   path: '/admin',
-  //   element: <LayoutAD />,
-  //   children: [
-  //     { path: '/admin/', element: <DashBroad /> },
-  //     { path: '/admin/products', element: <ListProducts /> },
-  //     { path: '/admin/product/add', element: <CreateProduct /> },
-  //     { path: '/admin/product/update/:id', element: <UpdateProduct /> },
-  //     { path: '/admin/categories', element: <ListCategories /> },
-  //     { path: '/admin/category/update/:id', element: <UpdateCategory /> },
-  //     { path: '/admin/category/add', element: <CreateCategory /> },
-  //     { path: '/admin/orders', element: <ListOrders /> },
-  //     { path: '/admin/order/update/:id', element: <UpdateOrder /> },
-  //     { path: '/admin/comments', element: <ListComments /> },
-  //     { path: '/admin/users', element: <ListUsers /> },
-  //   ],
-  // },
+  {
+    path: '/admin',
+    element: <LayoutAD />,
+    children: [
+      { path: '/admin/', element: <DashBroad /> },
+      { path: '/admin/products', element: <ListProducts /> },
+      { path: '/admin/product/add', element: <CreateProduct /> },
+      { path: '/admin/product/update/:id', element: <UpdateProduct /> },
+      { path: '/admin/categories', element: <ListCategories /> },
+      { path: '/admin/category/update/:id', element: <UpdateCategory /> },
+      { path: '/admin/category/add', element: <CreateCategory /> },
+      { path: '/admin/orders', element: <ListOrders /> },
+      { path: '/admin/order/update/:id', element: <UpdateOrder /> },
+      { path: '/admin/comments', element: <ListComments /> },
+      { path: '/admin/users', element: <ListUsers /> }
+   
+    ],
+  },
 ]);

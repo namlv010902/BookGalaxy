@@ -1,0 +1,38 @@
+#input-groupAdd, #btn-create{
+    border: 1.5px solid #CECFD3;
+    border-radius: 5px;
+    padding: 10px;
+    width: 350px;
+    outline: none;
+    margin-top: 10px;
+}
+#err{
+    color: #f12;
+}
+#input-groupAdd:focus{
+    border: 2px solid #2986CC;
+}
+.removeItemSize{
+    padding: 5px 10px;
+    border: none;
+    background-color: #f12;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+.addItemSize{
+    padding: 5px 10px;
+    border: none;
+    background-color: #008888;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+#btn-create{
+   background-color: #2986CC;
+   color: #fff;
+   border: none;
+}
+#formAddProduct{
+    margin-left: 400px;
+}
